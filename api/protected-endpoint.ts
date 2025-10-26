@@ -7,13 +7,13 @@ import 'dotenv/config';
 const app = express();
 app.use(express.json());
 
-// 配置
+// 驟咲ｽｮ
 const RECEIVER_ADDRESS = process.env.RECEIVER_ADDRESS || '0xYourReceiverAddress';
-const PAYMENT_AMOUNT = '1000000000'; // 1 USDC (6 位小数，wei)
+const PAYMENT_AMOUNT = '1000000000'; // 1 USDC (6 菴榊ｰ乗焚�詣ei)
 const USDC_ADDRESS = '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48';
-const FACILITATOR_URL = process.env.FACILITATOR_URL || 'https://facilitator.example.com';
+const FACILITATOR_URL = process.env.FACILITATOR_URL || 'https://x402.org/facilitator';
 
-// 支付要求结构
+// 謾ｯ莉倩ｦ∵ｱらｻ捺桷
 interface PaymentRequirements {
   x402Version: number;
   scheme: string;
@@ -28,7 +28,7 @@ interface PaymentRequirements {
   extra: { name: string; version: string };
 }
 
-// 支付中间�?
+// 謾ｯ莉倅ｸｭ髣ｴ莉?
 const paymentMiddleware = async (req: Request, res: Response, next: Function) => {
   const paymentHeader = req.get('X-PAYMENT');
 
@@ -76,10 +76,10 @@ const paymentMiddleware = async (req: Request, res: Response, next: Function) =>
   }
 };
 
-// API 路由
+// API 霍ｯ逕ｱ
 app.get('/api/protected-endpoint', paymentMiddleware, (req: Request, res: Response) => {
   res.json({ message: 'Payment successful! Here is your resource.' });
 });
 
-// 导出�?Serverless 函数
+// 蟇ｼ蜃ｺ荳?Serverless 蜃ｽ謨ｰ
 export default serverless(app);
